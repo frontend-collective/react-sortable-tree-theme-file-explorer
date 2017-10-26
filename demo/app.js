@@ -1,138 +1,48 @@
 import React, { Component } from 'react';
 import SortableTree, { toggleExpandedForAll } from 'react-sortable-tree';
-import CustomNodeRenderer from '../index';
-
-const maxDepth = 5;
+import FileExplorerTheme from '../index';
+import './app.css';
 
 class App extends Component {
   constructor(props) {
     super(props);
-
-    const renderDepthTitle = ({ path }) => `Depth: ${path.length}`;
 
     this.state = {
       searchString: '',
       searchFocusIndex: 0,
       searchFoundCount: null,
       treeData: [
+        { title: '.gitignore' },
+        { title: 'package.json' },
         {
-          title: '`title`',
-          subtitle: '`subtitle`',
+          title: 'src',
+          isDirectory: true,
           expanded: true,
           children: [
-            {
-              title: 'Child Node',
-              subtitle: 'Defined in `children` array belonging to parent',
-            },
-            {
-              title: 'Nested structure is rendered virtually',
-              subtitle: (
-                <span>
-                  The tree uses&nbsp;
-                  <a href="https://github.com/bvaughn/react-virtualized">
-                    react-virtualized
-                  </a>
-                  &nbsp;and the relationship lines are more of a visual trick.
-                </span>
-              ),
-            },
+            { title: 'styles.css' },
+            { title: 'index.js' },
+            { title: 'reducers.js' },
+            { title: 'actions.js' },
+            { title: 'utils.js' },
           ],
         },
         {
-          expanded: true,
-          title: 'Any node can be the parent or child of any other node',
-          children: [
-            {
-              expanded: true,
-              title: 'Chicken',
-              children: [{ title: 'Egg' }],
-            },
-          ],
+          title: 'tmp',
+          isDirectory: true,
+          children: [{ title: '12214124-log' }],
         },
         {
-          title: 'Button(s) can be added to the node',
-          subtitle:
-            'Node info is passed when generating so you can use it in your onClick handler',
+          title: 'build',
+          isDirectory: true,
+          children: [{ title: 'react-sortable-tree.js' }],
         },
         {
-          title: 'Show node children by setting `expanded`',
-          subtitle: ({ node }) =>
-            `expanded: ${node.expanded ? 'true' : 'false'}`,
-          children: [
-            {
-              title: 'Bruce',
-              subtitle: ({ node }) =>
-                `expanded: ${node.expanded ? 'true' : 'false'}`,
-              children: [{ title: 'Bruce Jr.' }, { title: 'Brucette' }],
-            },
-          ],
+          title: 'public',
+          isDirectory: true,
         },
         {
-          title: 'Advanced',
-          subtitle: 'Settings, behavior, etc.',
-          children: [
-            {
-              title: (
-                <div>
-                  <div
-                    style={{
-                      backgroundColor: 'gray',
-                      display: 'inline-block',
-                      borderRadius: 10,
-                      color: '#FFF',
-                      padding: '0 5px',
-                    }}
-                  >
-                    Any Component
-                  </div>
-                  &nbsp;can be used for `title`
-                </div>
-              ),
-            },
-            {
-              expanded: true,
-              title: 'Limit nesting with `maxDepth`',
-              subtitle: `It's set to ${maxDepth} for this example`,
-              children: [
-                {
-                  expanded: true,
-                  title: renderDepthTitle,
-                  children: [
-                    {
-                      expanded: true,
-                      title: renderDepthTitle,
-                      children: [
-                        { title: renderDepthTitle },
-                        {
-                          title: ({ path }) =>
-                            path.length >= maxDepth
-                              ? 'This cannot be dragged deeper'
-                              : 'This can be dragged deeper',
-                        },
-                      ],
-                    },
-                  ],
-                },
-              ],
-            },
-            {
-              title:
-                'Disable dragging on a per-node basis with the `canDrag` prop',
-              subtitle: 'Or set it to false to disable all dragging.',
-              noDragging: true,
-            },
-            {
-              title: 'You cannot give this children',
-              subtitle:
-                'Dropping is prevented via the `canDrop` API using `nextParent`',
-              noChildren: true,
-            },
-            {
-              title:
-                'When node contents are really long, it will cause a horizontal scrollbar' +
-                ' to appear. Deeply nested elements will also trigger the scrollbar.',
-            },
-          ],
+          title: 'node_modules',
+          isDirectory: true,
         },
       ],
     };
@@ -177,7 +87,7 @@ class App extends Component {
         .join(',\n   ');
 
       global.alert(
-        'Info passed to the button generator:\n\n' +
+        'Info passed to the icon and button generators:\n\n' +
           `node: {\n   ${objectString}\n},\n` +
           `path: [${path.join(', ')}],\n` +
           `treeIndex: ${treeIndex}`
@@ -200,93 +110,120 @@ class App extends Component {
             : 0,
       });
 
-    const isVirtualized = true;
-    const treeContainerStyle = isVirtualized ? { height: 450 } : {};
-
     return (
-      <div>
-        <h3>Demo</h3>
-        <button onClick={this.expandAll}>Expand All</button>
-        <button onClick={this.collapseAll}>Collapse All</button>
-        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-        <form
-          style={{ display: 'inline-block' }}
-          onSubmit={event => {
-            event.preventDefault();
-          }}
-        >
-          <label htmlFor="find-box">
-            Search:&nbsp;
-            <input
-              id="find-box"
-              type="text"
-              value={searchString}
-              onChange={event =>
-                this.setState({ searchString: event.target.value })}
-            />
-          </label>
-
-          <button
-            type="button"
-            disabled={!searchFoundCount}
-            onClick={selectPrevMatch}
+      <div
+        style={{ display: 'flex', flexDirection: 'column', height: '100vh' }}
+      >
+        <div style={{ flex: '0 0 auto', padding: '0 15px' }}>
+          <h3>File Explorer Theme</h3>
+          <button onClick={this.expandAll}>Expand All</button>
+          <button onClick={this.collapseAll}>Collapse All</button>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+          <form
+            style={{ display: 'inline-block' }}
+            onSubmit={event => {
+              event.preventDefault();
+            }}
           >
-            &lt;
-          </button>
+            <label htmlFor="find-box">
+              Search:&nbsp;
+              <input
+                id="find-box"
+                type="text"
+                value={searchString}
+                onChange={event =>
+                  this.setState({ searchString: event.target.value })}
+              />
+            </label>
 
-          <button
-            type="submit"
-            disabled={!searchFoundCount}
-            onClick={selectNextMatch}
-          >
-            &gt;
-          </button>
+            <button
+              type="button"
+              disabled={!searchFoundCount}
+              onClick={selectPrevMatch}
+            >
+              &lt;
+            </button>
 
-          <span>
-            &nbsp;
-            {searchFoundCount > 0 ? searchFocusIndex + 1 : 0}
-            &nbsp;/&nbsp;
-            {searchFoundCount || 0}
-          </span>
-        </form>
-        <div style={treeContainerStyle}>
+            <button
+              type="submit"
+              disabled={!searchFoundCount}
+              onClick={selectNextMatch}
+            >
+              &gt;
+            </button>
+
+            <span>
+              &nbsp;
+              {searchFoundCount > 0 ? searchFocusIndex + 1 : 0}
+              &nbsp;/&nbsp;
+              {searchFoundCount || 0}
+            </span>
+          </form>
+        </div>
+
+        <div style={{ flex: '1 0 50%', padding: '0 0 0 15px' }}>
           <SortableTree
+            theme={FileExplorerTheme}
             treeData={treeData}
             onChange={this.updateTreeData}
-            onMoveNode={({ node, treeIndex, path }) =>
-              global.console.debug(
-                'node:',
-                node,
-                'treeIndex:',
-                treeIndex,
-                'path:',
-                path
-              )}
-            maxDepth={maxDepth}
             searchQuery={searchString}
             searchFocusOffset={searchFocusIndex}
-            canDrag={({ node }) => !node.noDragging}
-            canDrop={({ nextParent }) => !nextParent || !nextParent.noChildren}
             searchFinishCallback={matches =>
               this.setState({
                 searchFoundCount: matches.length,
                 searchFocusIndex:
                   matches.length > 0 ? searchFocusIndex % matches.length : 0,
               })}
-            isVirtualized={isVirtualized}
+            canDrop={({ nextParent }) => !nextParent || nextParent.isDirectory}
             generateNodeProps={rowInfo => ({
+              icons: rowInfo.node.isDirectory
+                ? [
+                    <div
+                      style={{
+                        borderLeft: 'solid 8px gray',
+                        borderBottom: 'solid 10px gray',
+                        marginRight: 10,
+                        width: 16,
+                        height: 12,
+                        filter: rowInfo.node.expanded
+                          ? 'drop-shadow(1px 0 0 gray) drop-shadow(0 1px 0 gray) drop-shadow(0 -1px 0 gray) drop-shadow(-1px 0 0 gray)'
+                          : 'none',
+                        borderColor: rowInfo.node.expanded ? 'white' : 'gray',
+                      }}
+                    />,
+                  ]
+                : [
+                    <div
+                      style={{
+                        border: 'solid 1px black',
+                        fontSize: 8,
+                        textAlign: 'center',
+                        marginRight: 10,
+                        width: 12,
+                        height: 16,
+                      }}
+                    >
+                      F
+                    </div>,
+                  ],
               buttons: [
                 <button
                   style={{
-                    verticalAlign: 'middle',
+                    padding: 0,
+                    borderRadius: '100%',
+                    backgroundColor: 'gray',
+                    color: 'white',
+                    width: 16,
+                    height: 16,
+                    border: 0,
+                    fontWeight: 100,
                   }}
                   onClick={() => alertNodeInfo(rowInfo)}
                 >
-                  ℹ
+                  i
                 </button>,
               ],
             })}
-            nodeContentRenderer={CustomNodeRenderer}
           />
         </div>
       </div>
