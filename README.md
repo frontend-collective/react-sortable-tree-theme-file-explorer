@@ -13,7 +13,7 @@ npm install --save react-sortable-tree-theme-file-explorer
 ```jsx
 import React, { Component } from 'react';
 import SortableTree from 'react-sortable-tree';
-import FileExplorerTheme from 'react-sortable-tree-file-explorer-theme';
+import FileExplorerTheme from 'react-sortable-tree-theme-file-explorer';
 
 export default class Tree extends Component {
   constructor(props) {
