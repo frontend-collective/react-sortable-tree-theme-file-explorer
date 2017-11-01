@@ -12,6 +12,10 @@
   }
 }
 
+.rowWrapperDragDisabled {
+  cursor: default;
+}
+
 .row {
   height: 100%;
   white-space: nowrap;

@@ -90,7 +90,7 @@ class FileThemeNodeContentRenderer extends Component {
       }
     });
 
-    return connectDragSource(
+    const nodeContent = (
       <div style={{ height: '100%' }} {...otherProps}>
         {toggleChildrenVisibility &&
           node.children &&
@@ -113,7 +113,12 @@ class FileThemeNodeContentRenderer extends Component {
             />
           )}
 
-        <div className={styles.rowWrapper}>
+        <div
+          className={
+            styles.rowWrapper +
+            (!canDrag ? ` ${styles.rowWrapperDragDisabled}` : '')
+          }
+        >
           {/* Set the row preview to be used during drag and drop */}
           {connectDragPreview(
             <div style={{ display: 'flex' }}>
@@ -177,9 +182,12 @@ class FileThemeNodeContentRenderer extends Component {
             </div>
           )}
         </div>
-      </div>,
-      { dropEffect: 'copy' }
+      </div>
     );
+
+    return canDrag
+      ? connectDragSource(nodeContent, { dropEffect: 'copy' })
+      : nodeContent;
   }
 }
 
