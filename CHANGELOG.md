@@ -2,6 +2,16 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+<a name="1.1.1"></a>
+## [1.1.1](https://github.com/fritz-c/react-sortable-tree-theme-file-explorer/compare/v1.1.0...v1.1.1) (2017-11-01)
+
+
+### Bug Fixes
+
+* make canDrag work. Fixes [#5](https://github.com/fritz-c/react-sortable-tree-theme-file-explorer/issues/5) ([f82d6c1](https://github.com/fritz-c/react-sortable-tree-theme-file-explorer/commit/f82d6c1))
+
+
+
 <a name="1.1.0"></a>
 # 1.1.0 (2017-10-29)
 
