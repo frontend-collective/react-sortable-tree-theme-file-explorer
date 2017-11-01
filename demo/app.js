@@ -29,7 +29,10 @@ class App extends Component {
         {
           title: 'tmp',
           isDirectory: true,
-          children: [{ title: '12214124-log' }],
+          children: [
+            { title: '12214124-log' },
+            { title: 'drag-disabled-file', dragDisabled: true },
+          ],
         },
         {
           title: 'build',
@@ -174,6 +177,7 @@ class App extends Component {
                 searchFocusIndex:
                   matches.length > 0 ? searchFocusIndex % matches.length : 0,
               })}
+            canDrag={({ node }) => !node.dragDisabled}
             canDrop={({ nextParent }) => !nextParent || nextParent.isDirectory}
             generateNodeProps={rowInfo => ({
               icons: rowInfo.node.isDirectory
