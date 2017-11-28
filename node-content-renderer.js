@@ -40,6 +40,7 @@ class FileThemeNodeContentRenderer extends Component {
       swapFrom,
       swapLength,
       swapDepth,
+      treeId, // Not needed, but preserved for other renderers
       isOver, // Not needed, but preserved for other renderers
       parentNode, // Needed for dndManager
       ...otherProps
@@ -230,6 +231,7 @@ FileThemeNodeContentRenderer.propTypes = {
   title: PropTypes.oneOfType([PropTypes.func, PropTypes.node]),
   toggleChildrenVisibility: PropTypes.func,
   treeIndex: PropTypes.number.isRequired,
+  treeId: PropTypes.string.isRequired,
 
   // Drag and drop API functions
   // Drag source
