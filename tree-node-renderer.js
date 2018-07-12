@@ -76,6 +76,7 @@ FileThemeTreeNodeRenderer.propTypes = {
   path: PropTypes.arrayOf(
     PropTypes.oneOfType([PropTypes.string, PropTypes.number])
   ).isRequired,
+  rowDirection: PropTypes.string.isRequired,
 };
 
 export default FileThemeTreeNodeRenderer;

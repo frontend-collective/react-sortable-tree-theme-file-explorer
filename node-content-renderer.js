@@ -233,6 +233,7 @@ FileThemeNodeContentRenderer.propTypes = {
   toggleChildrenVisibility: PropTypes.func,
   treeIndex: PropTypes.number.isRequired,
   treeId: PropTypes.string.isRequired,
+  rowDirection: PropTypes.string.isRequired,
 
   // Drag and drop API functions
   // Drag source
