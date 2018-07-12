@@ -21,6 +21,7 @@ class FileThemeTreeNodeRenderer extends Component {
       getPrevRow, // Delete from otherProps
       node, // Delete from otherProps
       path, // Delete from otherProps
+      rowDirection,
       ...otherProps
     } = this.props;
 

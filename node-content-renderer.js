@@ -43,6 +43,7 @@ class FileThemeNodeContentRenderer extends Component {
       treeId, // Not needed, but preserved for other renderers
       isOver, // Not needed, but preserved for other renderers
       parentNode, // Needed for dndManager
+      rowDirection,
       ...otherProps
     } = this.props;
     const nodeTitle = title || node.title;
