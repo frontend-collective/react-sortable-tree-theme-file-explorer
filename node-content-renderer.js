@@ -111,7 +111,8 @@ class FileThemeNodeContentRenderer extends Component {
                   node,
                   path,
                   treeIndex,
-                })}
+                })
+              }
             />
           )}
 

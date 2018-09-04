@@ -135,7 +135,8 @@ class App extends Component {
                 type="text"
                 value={searchString}
                 onChange={event =>
-                  this.setState({ searchString: event.target.value })}
+                  this.setState({ searchString: event.target.value })
+                }
               />
             </label>
 
@@ -176,7 +177,8 @@ class App extends Component {
                 searchFoundCount: matches.length,
                 searchFocusIndex:
                   matches.length > 0 ? searchFocusIndex % matches.length : 0,
-              })}
+              })
+            }
             canDrag={({ node }) => !node.dragDisabled}
             canDrop={({ nextParent }) => !nextParent || nextParent.isDirectory}
             generateNodeProps={rowInfo => ({
