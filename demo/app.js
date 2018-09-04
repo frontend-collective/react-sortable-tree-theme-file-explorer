@@ -189,6 +189,7 @@ class App extends Component {
                         borderLeft: 'solid 8px gray',
                         borderBottom: 'solid 10px gray',
                         marginRight: 10,
+                        boxSizing: 'border-box',
                         width: 16,
                         height: 12,
                         filter: rowInfo.node.expanded
