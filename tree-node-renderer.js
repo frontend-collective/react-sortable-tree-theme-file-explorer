@@ -21,6 +21,7 @@ class FileThemeTreeNodeRenderer extends Component {
       getPrevRow, // Delete from otherProps
       node, // Delete from otherProps
       path, // Delete from otherProps
+      rowDirection,
       ...otherProps
     } = this.props;
 
@@ -75,6 +76,7 @@ FileThemeTreeNodeRenderer.propTypes = {
   path: PropTypes.arrayOf(
     PropTypes.oneOfType([PropTypes.string, PropTypes.number])
   ).isRequired,
+  rowDirection: PropTypes.string.isRequired,
 };
 
 export default FileThemeTreeNodeRenderer;
