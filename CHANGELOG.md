@@ -2,6 +2,21 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+<a name="2.0.0"></a>
+# [2.0.0](https://github.com/frontend-collective/react-sortable-tree-theme-file-explorer/compare/v1.1.2...v2.0.0) (2018-09-04)
+
+
+### build
+
+* update react-sortable-tree version ([849203b](https://github.com/frontend-collective/react-sortable-tree-theme-file-explorer/commit/849203b))
+
+
+### BREAKING CHANGES
+
+* Now uses react-sortable-tree@2
+
+
+
 <a name="1.1.2"></a>
 ## [1.1.2](https://github.com/frontend-collective/react-sortable-tree-theme-file-explorer/compare/v1.1.1...v1.1.2) (2017-11-28)
 
