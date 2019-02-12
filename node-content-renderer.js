@@ -91,12 +91,10 @@ class FileThemeNodeContentRenderer extends Component {
         );
       }
     });
-
+    const buttonRenderFlag = toggleChildrenVisibility && (node.children && node.children.length > 0) || node.asyncChildren
     const nodeContent = (
       <div style={{ height: '100%' }} {...otherProps}>
-        {toggleChildrenVisibility &&
-          node.children &&
-          node.children.length > 0 && (
+        {buttonRenderFlag && (
             <button
               type="button"
               aria-label={node.expanded ? 'Collapse' : 'Expand'}
