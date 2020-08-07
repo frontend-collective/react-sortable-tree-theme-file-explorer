@@ -44,6 +44,12 @@ class FileThemeNodeContentRenderer extends Component {
       isOver, // Not needed, but preserved for other renderers
       parentNode, // Needed for dndManager
       rowDirection,
+
+      // virtualized row props
+      isScrolling,
+      isVisible,
+      parent,
+
       ...otherProps
     } = this.props;
     const nodeTitle = title || node.title;
@@ -210,6 +216,9 @@ FileThemeNodeContentRenderer.defaultProps = {
   swapLength: null,
   title: null,
   toggleChildrenVisibility: null,
+  isScrolling: false,
+  isVisible: true,
+  parent: {},
 };
 
 FileThemeNodeContentRenderer.propTypes = {
@@ -247,6 +256,11 @@ FileThemeNodeContentRenderer.propTypes = {
   // Drop target
   canDrop: PropTypes.bool,
   isOver: PropTypes.bool.isRequired,
+
+  // virtualized row props
+  isScrolling: PropTypes.bool,
+  isVisible: PropTypes.bool,
+  parent: PropTypes.shape({}),
 };
 
 export default FileThemeNodeContentRenderer;
