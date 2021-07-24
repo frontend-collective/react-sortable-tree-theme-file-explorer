@@ -295,3 +295,17 @@ $highlight-line-size: 6px; // Make it an even number for clean rendering
     border-left: $arrow-size solid $highlight-color;
   }
 }
+
+
+:global(.rtl) .expandButton::after{
+  transform: translate3d(-50%, -20%, 0) rotateZ(90deg);
+}
+.rowContentsDragDisabled{
+  touch-action: none;
+  border-left: solid #bbb 1px;
+}
+
+:global(.rtl) .rowContentsDragDisabled {
+  border-right: solid #bbb 1px;
+  border-left: solid #bbb 1px;
+}
