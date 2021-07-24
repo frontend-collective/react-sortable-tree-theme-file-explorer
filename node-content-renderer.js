@@ -105,6 +105,7 @@ class FileThemeNodeContentRenderer extends Component {
               }
               style={{
                 left: (lowerSiblingCounts.length - 0.7) * scaffoldBlockPxWidth,
+                right: (lowerSiblingCounts.length - 0.7) * scaffoldBlockPxWidth,
               }}
               onClick={() =>
                 toggleChildrenVisibility({
